@@ -4,7 +4,8 @@ const express = require('express');
 const weather = require('./utils');
 
 
-const app = express()
+const app = express();
+const port = process.env.PORT || 8080;
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -12,7 +13,7 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 
 
 // Setup static directory to serve
-app.use('/',express.static(publicDirectoryPath));
+app.use('/', express.static(publicDirectoryPath));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,7 +24,7 @@ app.use((req, res, next) => {
 
 app.get('/getweather', (req, res) => {
     const search = req.query.city;
-    weather.getCity( search, data => {
+    weather.getCity(search, data => {
         console.log(data)
         res.send(data);
     });
@@ -37,6 +38,6 @@ app.get('/getweather', (req, res) => {
 
 
 
-app.listen(8080, () => {
-    console.log('Server is up on port 8080.')
+app.listen(port, () => {
+    console.log('Server is up on port .' + port)
 })

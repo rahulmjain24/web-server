@@ -3,14 +3,11 @@ const express = require('express');
 
 const weather = require('./utils');
 
-
 const app = express();
 const port = process.env.PORT || 8080;
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
-
-
 
 // Setup static directory to serve
 app.use('/', express.static(publicDirectoryPath));
@@ -28,15 +25,11 @@ app.get('/getweather', (req, res) => {
         console.log(data)
         res.send(data);
     });
-    // res.send('<p> This is weather</p>')
 })
 
-// app.use('/', (req, res) => {
-//     res.render('index.html')
-// })
-
-
-
+app.get('/weather',(req,res) => {
+    res.sendFile(publicDirectoryPath + '/index.html')
+})
 
 app.listen(port, () => {
     console.log('Server is up on port .' + port)

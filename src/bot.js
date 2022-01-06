@@ -8,28 +8,25 @@ const weatherURL = process.env['W_URL']
 
 const getForcast = async (cityname = 'tokyo', res) => {
     try {
-        const response = await axios.get(cityURL + key);
-        const thecity = response.data.filter(d => d.EnglishName.toLowerCase() === cityname.toLowerCase());
-        //console.log(thecity[0])
+        const response = await axios.get(cityURL + key + "&q=" + cityname);
+        const thecity = response.data[0]
 
         if (thecity.length === 0) {
             console.log('Please enter a valid location');
         } else {
-            const response2 = await axios.get(weatherURL + thecity[0].Key + '?apikey=' + key);
+            const response2 = await axios.get(weatherURL + thecity.Key + '?apikey=' + key);
             const data = response2.data[0];
-            //console.log(thecity[0].EnglishName, data.Temperature.Metric.Value, data.Temperature.Metric.Unit)
             let newData = {
-                name:thecity[0].EnglishName,
+                name: thecity.EnglishName,
                 temp: data.Temperature.Metric.Value
             }
-
+            //console.log(newData)
             return newData
         }
     } catch (e) {
         console.log(e);
     }
 };
-
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`)
 })

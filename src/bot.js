@@ -1,10 +1,10 @@
 const Discord = require('discord.js')
 const axios = require('axios')
 const client = new Discord.Client()
-const token = "OTI2NDYzNDI0NTg4ODMyNzY4.Yc8CTQ.KkPaYbMP58eiAzB8pikuHHRmPKE"
-const cityURL = "http://dataservice.accuweather.com/locations/v1/topcities/150?apikey="
-const key = "xNH9a9gqiaLJbUG1Rm5sAWIOtXHiLlbS"
-const weatherURL = "http://dataservice.accuweather.com/currentconditions/v1/"
+const token = process.env['TOKEN']
+const cityURL = process.env['C_URL']
+const key = process.env['KEY']
+const weatherURL = process.env['W_URL']
 
 const getForcast = async (cityname = 'tokyo', res) => {
     try {

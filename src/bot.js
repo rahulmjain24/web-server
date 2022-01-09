@@ -54,7 +54,7 @@ client.on('message', async (msg) => {
         const cityname = msg.content.slice(3).trim().toLowerCase()
         const rep = await getForcast(cityname)
         //msg.reply(`The temperature in ${rep.name} is ${rep.Temperature.Metric.Value}°C`)
-        msg.send({ embeds: [sendEmbed(rep)] })
+        msg.channel.send({ embeds: [sendEmbed(rep)] })
     }
 })
 

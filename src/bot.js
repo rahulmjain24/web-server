@@ -53,7 +53,14 @@ client.on('message', async (msg) => {
     if(msg.content.includes('!w')){        
         const cityname = msg.content.slice(3).trim().toLowerCase()
         const rep = await getForcast(cityname)
-        msg.reply({ embeds: [sendEmbeddedData(rep)]})
+        msg.reply({ embeds: [new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle(rep.name)
+            .setURL(rep.link)
+            .setDescription(`It's currently ${rep.Temperature.Metric.Value}°C in ${rep.name}`)
+            .setThumbnail(`/img/icons/${rep.weatherIcon}.svg`)
+            .setImage(rep.isDayTime ? '/imag/day.svg' : '/img/night.svg')
+            .setTimestamp()]})
     }
 })
 

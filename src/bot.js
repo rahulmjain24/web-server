@@ -6,17 +6,17 @@ const cityURL = process.env['C_URL']
 const key = process.env['KEY']
 const weatherURL = process.env['W_URL']
 
-const sendEmbeddedData = (rep) => {
-    const exampleEmbed = new Discord.MessageEmbed()
+const sendEmbed = rep => {
+    const embedded = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(rep.name)
         .setURL(rep.link)
         .setDescription(`It's currently ${rep.Temperature.Metric.Value}°C in ${rep.name}`)
         .setThumbnail(`/img/icons/${rep.weatherIcon}.svg`)
-        .setImage(rep.isDayTime ? '/imag/day.svg' : '/img/night.svg')
+        .setImage(rep.isDayTime ? '/img/day.svg' : '/img/night.svg')
         .setTimestamp()
 
-    return exampleEmbed
+    return embedded
 }
 
 const getForcast = async (cityname = 'tokyo', res) => {
@@ -53,7 +53,8 @@ client.on('message', async (msg) => {
     if(msg.content.includes('!w')){        
         const cityname = msg.content.slice(3).trim().toLowerCase()
         const rep = await getForcast(cityname)
-        msg.reply(`The temperature in ${rep.name} is ${rep.Temperature.Metric.Value}°C`)
+        //msg.reply(`The temperature in ${rep.name} is ${rep.Temperature.Metric.Value}°C`)
+        msg.send({ embeds: [sendEmbed(rep)] })
     }
 })
 

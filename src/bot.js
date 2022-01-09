@@ -7,7 +7,7 @@ const key = process.env['KEY']
 const weatherURL = process.env['W_URL']
 
 const sendEmbeddedData = (rep) => {
-    const exampleEmbed = new MessageEmbed()
+    const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(rep.name)
         .setURL(rep.link)

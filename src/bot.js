@@ -59,7 +59,7 @@ client.on('message', async (msg) => {
             .setURL(rep.link)
             .setDescription(`It's currently ${rep.Temperature.Metric.Value}°C in ${rep.name}`)
             .setThumbnail(`/img/icons/${rep.weatherIcon}.svg`)
-            .setImage(rep.isDayTime ? '/imag/day.svg' : '/img/night.svg')
+            .setImage(rep.isDayTime ? 'https://rahul-jain-web-server.herokuapp.com/img/day.svg' : 'https://rahul-jain-web-server.herokuapp.com/img/night.svg')
             .setTimestamp()]})
     }
 })

@@ -53,7 +53,7 @@ client.on('message', async (msg) => {
     if(msg.content.includes('!w')){        
         const cityname = msg.content.slice(3).trim().toLowerCase()
         const rep = await getForcast(cityname)
-        msg.reply(sendEmbeddedData(rep))
+        msg.reply({ embeds: [sendEmbeddedData(rep)]})
     }
 })
 

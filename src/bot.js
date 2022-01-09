@@ -53,14 +53,7 @@ client.on('message', async (msg) => {
     if(msg.content.includes('!w')){        
         const cityname = msg.content.slice(3).trim().toLowerCase()
         const rep = await getForcast(cityname)
-        msg.reply({ embeds: [new Discord.MessageEmbed()
-            .setColor('#0099ff')
-            .setTitle(rep.name)
-            .setURL(rep.link)
-            .setDescription(`It's currently ${rep.Temperature.Metric.Value}°C in ${rep.name}`)
-            .setThumbnail(`/img/icons/${rep.weatherIcon}.svg`)
-            .setImage(rep.isDayTime ? 'https://rahul-jain-web-server.herokuapp.com/img/day.svg' : 'https://rahul-jain-web-server.herokuapp.com/img/night.svg')
-            .setTimestamp()]})
+        msg.reply(`The temperature in ${rep.name} is ${rep.Temperature.Metric.Value}°C`)
     }
 })
 

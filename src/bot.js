@@ -6,6 +6,19 @@ const cityURL = process.env['C_URL']
 const key = process.env['KEY']
 const weatherURL = process.env['W_URL']
 
+const sendEmbeddedData = (rep) => {
+    const exampleEmbed = new MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle(rep.name)
+        .setURL(rep.link)
+        .setDescription(`It's currently ${rep.Temperature.Metric.Value}°C in ${rep.name}`)
+        .setThumbnail(`/img/icons/${rep.weatherIcon}.svg`)
+        .setImage(rep.isDayTime ? '/imag/day.svg' : '/img/night.svg')
+        .setTimestamp()
+
+    return exampleEmbed
+}
+
 const getForcast = async (cityname = 'tokyo', res) => {
     try {
         const response = await axios.get(cityURL + key + "&q=" + cityname);
@@ -17,8 +30,13 @@ const getForcast = async (cityname = 'tokyo', res) => {
             const response2 = await axios.get(weatherURL + thecity.Key + '?apikey=' + key);
             const data = response2.data[0];
             let newData = {
-                name: thecity.EnglishName,
-                temp: data.Temperature.Metric.Value
+                condition:data.WeatherText,
+                weatherIcon:data.WeatherIcon,
+                Temperature: {...data.Temperature},
+                link:data.Link,
+                name:thecity.EnglishName,
+                country:thecity.Country.LocalizedName,
+                isDayTime:data.IsDayTime
             }
             //console.log(newData)
             return newData
@@ -35,7 +53,7 @@ client.on('message', async (msg) => {
     if(msg.content.includes('!w')){        
         const cityname = msg.content.slice(3).trim().toLowerCase()
         const rep = await getForcast(cityname)
-        msg.reply(`The temperature in ${rep.name} is ${rep.temp}°C`)
+        msg.reply(sendEmbeddedData(rep))
     }
 })
 

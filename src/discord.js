@@ -18,7 +18,7 @@ client.on('messageCreate', async (msg) => {
     //console.log(msg)
     if (msg.author.bot) return;
 
-    if (msg.content.includes('!d')) {
+    if (msg.content.includes('!w')) {
         const cityname = msg.content.slice(3).trim().toLowerCase()
         const rep = await getForcast(cityname)
         const imgURL = rep.isDayTime ? 'https://rahul-jain-web-server.herokuapp.com/img/day.png' : 'https://rahul-jain-web-server.herokuapp.com/img/night.png'

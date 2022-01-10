@@ -1,10 +1,8 @@
-const Discord = require('discord.js')
 const axios = require('axios')
-const client = new Discord.Client()
-const token = process.env['TOKEN']
-const cityURL = process.env['C_URL']
-const key = process.env['KEY']
-const weatherURL = process.env['W_URL']
+//require('dotenv').config();
+const cityURL = process.env["C_URL"]
+const key = process.env["KEY"]
+const weatherURL = process.env["W_URL"]
 
 const getForcast = async (cityname = 'tokyo', res) => {
     try {
@@ -34,17 +32,5 @@ const getForcast = async (cityname = 'tokyo', res) => {
         console.log(e);
     }
 };
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}`)
-})
 
-client.on('message', async (msg) => {
-    if(msg.content.includes('!w')){        
-        const cityname = msg.content.slice(3).trim().toLowerCase()
-        const rep = await getForcast(cityname)
-        msg.reply(`The temperature in ${rep.name} is ${rep.Temperature.Metric.Value}°C`)
-      //  msg.channel.send(exampleEmbed)
-    }
-})
-
-client.login(token)
+module.exports = { getForcast }

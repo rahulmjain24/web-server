@@ -11,7 +11,7 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 
 // Setup static directory to serve
 app.use('/', express.static(publicDirectoryPath));
-
+require('./bot')
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
@@ -30,8 +30,6 @@ app.get('/getweather', (req, res) => {
 app.get('/weather',(req,res) => {
     res.sendFile(publicDirectoryPath + '/index.html')
 })
-
-require('./discord')
 
 app.listen(port, () => {
     console.log('Server is up on port .' + port)

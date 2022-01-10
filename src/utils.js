@@ -1,8 +1,8 @@
 const axios = require('axios');
 
-const cityURL = process.env['C_URL'];
-const key = process.env['KEY'];
-const weatherURL = process.env['W_URL'];
+const cityURL = 'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=';
+const key = 'xNH9a9gqiaLJbUG1Rm5sAWIOtXHiLlbS';
+const weatherURL = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
 exports.getCity = async (cityname = 'tokyo', res) => {
     try {

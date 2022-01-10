@@ -57,7 +57,7 @@ client.on('message', async (msg) => {
             .setTimestamp()
             .setFooter({ text: `Weather bot by Rahul`, iconURL: 'https://cdn.discordapp.com/avatars/359259183440199681/96b992bbf3107f1d4f6d4be22f5d225b.webp?size=80' });
         // msg.reply(`The temperature in ${rep.name} is ${rep.temp}°C`)
-        message.channel.send(exampleEmbed)
+        msg.channel.send(exampleEmbed)
     }
 })
 

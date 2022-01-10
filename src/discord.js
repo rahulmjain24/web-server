@@ -1,6 +1,8 @@
 const { Client, Intents, MessageEmbed } = require('discord.js')
 const { getForcast } = require('./weather')
 
+const token = process.env['TOKEN']
+
 const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
@@ -13,15 +15,9 @@ client.on('ready', () => {
 })
 
 client.on('messageCreate', async (msg) => {
-    console.log(msg)
+    //console.log(msg)
     if (msg.author.bot) return;
 
-    if (msg.content === 'ping') {
-        msg.reply({
-            content: 'pong'
-        })
-
-    }
     if (msg.content.includes('!d')) {
         const cityname = msg.content.slice(3).trim().toLowerCase()
         const rep = await getForcast(cityname)
@@ -43,9 +39,6 @@ client.on('messageCreate', async (msg) => {
 
         msg.channel.send({ embeds: [exampleEmbed] })
     }
-
-    msg.channel.send
 })
 
-
-client.login(process.env.TOKEN)
+client.login(token)

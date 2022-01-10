@@ -2,17 +2,24 @@
   "name": "web-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahulmjain24/web-server.git"
+  },
+  "author": "Rahul Jain",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahulmjain24/web-server/issues"
+  },
+  "homepage": "https://github.com/rahulmjain24/web-server#readme",
   "dependencies": {
     "axios": "^0.24.0",
     "discord.js": "^13.5.1",
-    "express": "^4.17.2",
-    "hbs": "^4.0.1"
+    "express": "^4.17.2"
   }
 }
